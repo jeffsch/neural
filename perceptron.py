@@ -1,7 +1,10 @@
 __author__ = 'jeffs'
 
 import random
-class perceptron:
+
+c = 0.01    # learning rate
+
+class Perceptron:
     def __init__(self, n):
         '''
         :param n: number of inputs for the perceptron
@@ -16,3 +19,15 @@ class perceptron:
         for i in range(len(inputs)):
             sum += self.weights[i]*inputs[i]
         return self.activate(sum)
+    def train(self, inputs, desired):
+        guess = self.feedfoward(inputs)
+        error = desired - guess
+        for i in range(self.weights):
+            self.weights[i] = c * error * inputs[i]
+
+class Trainer:
+    def __init__(self, x, y, a):
+        self.inputs[0] = x
+        self.inputs[1] = y
+        self.inputs[2] = 1
+        self.answer = a
