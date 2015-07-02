@@ -27,7 +27,27 @@ class Perceptron:
 
 class Trainer:
     def __init__(self, x, y, a):
-        self.inputs[0] = x
-        self.inputs[1] = y
-        self.inputs[2] = 1
+        self.inputs = []
+        self.inputs.append(x)
+        self.inputs.append(y)
+        self.inputs.append(1) # weight parameter
         self.answer = a
+
+def yline(x):
+    return 2*x+1
+
+trainingCount = 2000 # number of training points to create
+ptron = Perceptron(3)
+width = 640
+height = 360
+t = []
+
+# create training points
+for i in range(trainingCount):
+    x = random.uniform(-width/2,width/2)
+    y = random.uniform(-height/2,height/2)
+    if y < yline(x):
+        answer = -1
+    else:
+        answer = 1
+    t.append(Trainer(x, y, answer))
